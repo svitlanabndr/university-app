@@ -1,0 +1,35 @@
+{
+  "name": "university-app",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": "10.x"
+  },
+  "dependencies": {
+    "concurrently": "^5.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "build": "concurrently \"cd client && npm run build\"",
+    "heroku-postbuild": "npm run build",
+    "install": "(cd client && npm i) && (cd server && npm i)",
+    "start": "cd server && npm run start-server",
+    "lint:client": "cd client && npm run lint",
+    "lint:server": "cd server && npm run lint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint:server && npm run lint:client"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}

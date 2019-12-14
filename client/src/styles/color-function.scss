@@ -1,0 +1,4 @@
+@function color($key: 'primary', $variant: 'background') {
+	$map: map-get($colors, $key);
+	@return map-get($map, $variant);
+}

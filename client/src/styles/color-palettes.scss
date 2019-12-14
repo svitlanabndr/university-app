@@ -1,0 +1,37 @@
+$colors: (
+  'border': (
+    'lightGrey': #DADADA,
+    'grey': #cbd5e0
+  ),
+  'background': (
+    'main': #00164d,
+    'search': #2e406d,
+    'positive': #27AE60
+  ),
+	'primary': (
+    'main': #2F80ED,
+	),
+	'text': (
+    'main': #1A202C,
+    'fieldDescription': #A0A0A0,
+    'fieldLabel': #718096,
+    'positive': #219653,
+    'pending': #E8B600,
+    'secondary': #4A5568,
+    'passive': #A0AEC0,
+    'search': #768ABD,
+    'danger': #EB5757
+	),
+	'error': (
+		'text': #dd2727
+	),
+	'grey': (
+    'regular': #F7FAFC,
+    'light': #E2E8F0,
+    'bold': #edf2f7,
+    'darker': #718096
+  ),
+  'shadow': (
+    'grey': rgba(0, 22, 77, 0.15)
+  )
+);
