@@ -11,12 +11,10 @@ import Mark from "./Mark";
 
 @Entity()
 export default class StudentMark extends AbstractEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
-
   @ManyToOne(type => Student, student => student.studentMarks, {
     onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
+    onUpdate: 'CASCADE',
+    primary: true
   })
   @JoinColumn()
   student: Student;
@@ -25,7 +23,8 @@ export default class StudentMark extends AbstractEntity {
 
   @ManyToOne(type => Mark, mark => mark.studentMarks, {
     onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
+    onUpdate: 'CASCADE',
+    primary: true
   })
   @JoinColumn()
   mark: Mark;

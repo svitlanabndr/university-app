@@ -8,6 +8,8 @@ import {
 import { AbstractEntity } from "./AbstractEntity";
 import { Sex } from '../../common/enums/Sex';
 import Student from './Student';
+import Violation from './Violation';
+import PersonPrivilege from './PersonPrivilege';
   
 @Entity()
 export default class Person extends AbstractEntity {
@@ -56,4 +58,10 @@ export default class Person extends AbstractEntity {
 
   @OneToOne(type => Student, student => student.person)
   student: Student;
+
+  @OneToMany(type => Violation, violations => violations.person)
+  violations: Violation[];
+
+  @OneToMany(type => PersonPrivilege, personPrivileges => personPrivileges.person)
+  personPrivileges: PersonPrivilege[];
 }

@@ -11,12 +11,10 @@ import Group from "./Group";
 
 @Entity()
 export default class StudentGroup extends AbstractEntity {
-  @PrimaryGeneratedColumn()
-  id: number;
-
   @ManyToOne(type => Student, student => student.studentGroups, {
     onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
+    onUpdate: 'CASCADE',
+    primary: true
   })
   @JoinColumn()
   student: Student;
@@ -25,7 +23,8 @@ export default class StudentGroup extends AbstractEntity {
 
   @ManyToOne(type => Group, group => group.studentGroups, {
     onDelete: 'CASCADE',
-    onUpdate: 'CASCADE'
+    onUpdate: 'CASCADE',
+    primary: true
   })
   @JoinColumn()
   group: Group;
