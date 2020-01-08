@@ -4,7 +4,7 @@ import { OrderKindName } from "../../common/enums/OrderKindName";
 import { ContractKindName } from "../../common/enums/ContractKindName";
 
 export const getStudentsByGroup = () => {
-  return getCustomRepository(StudentRepository)
+  const query = getCustomRepository(StudentRepository)
     .createQueryBuilder('student')
     .leftJoinAndSelect('student.studentGroups', 'studentGroup')
     .leftJoinAndSelect('studentGroup.group', 'group')
@@ -16,11 +16,14 @@ export const getStudentsByGroup = () => {
     .leftJoinAndSelect('student.person', 'person')
     .leftJoinAndSelect('person.citizen', 'citizen')
     .andWhere('citizen.citizenName = :citizen', { citizen: 'киянин' })
-    .getMany()
+
+    console.log(query.getQueryAndParameters());
+
+    return query.getMany();
 }
 
 export const getStudentsByViolation = () => {
-  return getCustomRepository(StudentRepository)
+  const query =  getCustomRepository(StudentRepository)
     .createQueryBuilder('student')
     .leftJoinAndSelect('student.person', 'person')
     .leftJoinAndSelect('person.violations', 'violation')
@@ -28,11 +31,14 @@ export const getStudentsByViolation = () => {
     .leftJoinAndSelect('violation.order', 'order')
     .leftJoinAndSelect('order.orderKind', 'orderKind')
     .where('orderKind.orderKindName = :orderKindName', { orderKindName: OrderKindName.Drop })
-    .getMany()
+    
+    console.log(query.getQueryAndParameters());
+
+    return query.getMany();
 }
 
 export const getStudentsByContract = async () => {
-  const students = await getCustomRepository(StudentRepository)
+  const query = await getCustomRepository(StudentRepository)
     .createQueryBuilder('student')
     .leftJoinAndSelect('student.contracts', 'contract')
     .leftJoinAndSelect('contract.contractKind', 'contractKind')
@@ -40,7 +46,10 @@ export const getStudentsByContract = async () => {
     .leftJoinAndSelect('student.person', 'person')
     .leftJoinAndSelect('person.personPrivileges', 'personPrivilege')
     .leftJoinAndSelect('personPrivilege.privilege', 'privilege')
-    .getMany();
+
+  console.log(query.getQueryAndParameters());
+
+  const students = await query.getMany();
 
   return students.filter(student => student.person.personPrivileges && student.person.personPrivileges.length)
 }
