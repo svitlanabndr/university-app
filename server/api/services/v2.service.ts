@@ -1,5 +1,6 @@
 import { getCustomRepository } from "typeorm";
 import StudentRepository from "../../data/repositories/student.repository";
+import { OrderKindName } from "../../common/enums/OrderKindName";
 
 export const getStudentsByGroup = () => {
   return getCustomRepository(StudentRepository)
@@ -14,5 +15,17 @@ export const getStudentsByGroup = () => {
     .leftJoinAndSelect('student.person', 'person')
     .leftJoinAndSelect('person.citizen', 'citizen')
     .andWhere('citizen.citizenName = :citizen', { citizen: 'киянин' })
+    .getMany()
+}
+
+export const getStudentsByViolation = () => {
+  return getCustomRepository(StudentRepository)
+    .createQueryBuilder('student')
+    .leftJoinAndSelect('student.person', 'person')
+    .leftJoinAndSelect('person.violations', 'violation')
+    .leftJoinAndSelect('violation.violationKind', 'violationKind')
+    .leftJoinAndSelect('violation.order', 'order')
+    .leftJoinAndSelect('order.orderKind', 'orderKind')
+    .where('orderKind.orderKindName = :orderKindName', { orderKindName: OrderKindName.Drop })
     .getMany()
 }
