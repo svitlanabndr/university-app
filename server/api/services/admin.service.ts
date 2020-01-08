@@ -27,6 +27,7 @@ import ViolationRepository from "../../data/repositories/violation.repository";
 import PrivilegeRepository from "../../data/repositories/privilege.repository";
 import { PrivilegeName } from "../../common/enums/PrivilegeName";
 import PersonPrivilegeRepository from "../../data/repositories/personPrivilege.repository";
+import ScitizenRepository from "../../data/repositories/scitizen.repository";
 import { PrivilegeGround } from "../../common/enums/PrivilegeGround";
 
 export const seedData = async () => {
@@ -78,18 +79,25 @@ export const seedData = async () => {
     { financeName: FinanceName.XPF },
   ]);
 
+  // SAVE SCITIZENS
+  await getCustomRepository(ScitizenRepository).save([
+    { citizenName: 'киянин'},
+    { citizenName: 'одесит'},
+    { citizenName: 'житомирянин'},
+  ]);
+
   // SAVE PEOPLE
   await getCustomRepository(PersonRepository).save([
-    { surname: 'Ivanov', name: 'Ivan', patronymic: 'Ivanovich', birthDate: new Date(1998, 4, 13), sex: Sex.Male, birthPlace: 'Odessa', address: 'street 1', telephone: '12-34-222' },
-    { surname: 'Petrov', name: 'Petro', patronymic: 'Petrovich', birthDate: new Date(1995, 8, 13), sex: Sex.Male, birthPlace: 'Sumy', address: 'street 2', telephone: '12-34-100' },
-    { surname: 'Gavrylova', name: 'Anna', patronymic: 'Vasylyvna', birthDate: new Date(1999, 4, 10), sex: Sex.Female, birthPlace: 'Odessa', address: 'street 1', telephone: '12-34-222' },
-    { surname: 'Chubko', name: 'Olga', patronymic: 'Petrovna', birthDate: new Date(1997, 4, 13), sex: Sex.Female, birthPlace: 'Odessa', address: 'street 1', telephone: '12-34-222' },
+    { surname: 'Ivanov', name: 'Ivan', patronymic: 'Ivanovich', birthDate: new Date(1998, 4, 13), sex: Sex.Male, birthPlace: 'Odessa', address: 'street 1', telephone: '12-34-222', citizen: { id: 1 } },
+    { surname: 'Petrov', name: 'Petro', patronymic: 'Petrovich', birthDate: new Date(1995, 8, 13), sex: Sex.Male, birthPlace: 'Sumy', address: 'street 2', telephone: '12-34-100', citizen: { id: 1 }  },
+    { surname: 'Gavrylova', name: 'Anna', patronymic: 'Vasylyvna', birthDate: new Date(1999, 4, 10), sex: Sex.Female, birthPlace: 'Odessa', address: 'street 1', telephone: '12-34-222', citizen: { id: 2 }  },
+    { surname: 'Chubko', name: 'Olga', patronymic: 'Petrovna', birthDate: new Date(1997, 4, 13), sex: Sex.Female, birthPlace: 'Odessa', address: 'street 1', telephone: '12-34-222', citizen: { id: 1 }  },
   ]);
 
   // SAVE STUDENTS
   await getCustomRepository(StudentRepository).save([
     { bookNo: 'IK6227', note: 'нотатки', person: { id: 1 }, finance: { id: 1 }, diploma: { id: 1 } },
-    { bookNo: 'IK6102', note: 'нотатки', person: { id: 2 }, finance: { id: 5 }, diploma: { id: 2 } },
+    { bookNo: 'IK6202', note: 'нотатки', person: { id: 2 }, finance: { id: 5 }, diploma: { id: 2 } },
     { bookNo: 'IK5116', person: { id: 3 }, finance: { id: 3 }, diploma: { id: 1 } },
     { bookNo: 'IK6216', person: { id: 4 }, finance: { id: 4 }, diploma: { id: 1 } },
   ]);

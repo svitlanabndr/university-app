@@ -3,13 +3,17 @@ import {
     PrimaryGeneratedColumn,
     Column,
     OneToMany,
-    OneToOne
+    OneToOne,
+    ManyToOne,
+    JoinColumn,
+    RelationId
 } from "typeorm";
 import { AbstractEntity } from "./AbstractEntity";
 import { Sex } from '../../common/enums/Sex';
 import Student from './Student';
 import Violation from './Violation';
 import PersonPrivilege from './PersonPrivilege';
+import SCitizen from './SCitizen';
   
 @Entity()
 export default class Person extends AbstractEntity {
@@ -64,4 +68,14 @@ export default class Person extends AbstractEntity {
 
   @OneToMany(type => PersonPrivilege, personPrivileges => personPrivileges.person)
   personPrivileges: PersonPrivilege[];
+
+  @ManyToOne(type => SCitizen, citizen => citizen.persons, {
+    onDelete: 'CASCADE',
+    onUpdate: 'CASCADE',
+    nullable: true
+  })
+  @JoinColumn()
+  citizen: SCitizen;
+  @RelationId((person: Person) => person.citizen)
+  readonly sitizenId: number;
 }
