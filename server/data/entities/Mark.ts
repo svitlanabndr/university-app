@@ -15,7 +15,7 @@ export default class Mark extends AbstractEntity {
   @Column({
     nullable: true
   })
-  markName: string;
+  markName: number;
 
   @OneToMany(type => StudentMark, studentMarks => studentMarks.mark)
   studentMarks: StudentMark[];

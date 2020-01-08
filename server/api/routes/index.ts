@@ -1,5 +1,5 @@
-import userRoutes from './user.routes';
+import adminRoutes from './admin.routes';
 
 export default (app) => {
-    app.use('/api/user', userRoutes);
+    app.use('/api/admin', adminRoutes);
 };
