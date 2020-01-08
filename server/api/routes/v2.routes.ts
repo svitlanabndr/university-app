@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getStudentsByGroup, getStudentsByViolation } from '../services/v2.service';
+import { getStudentsByGroup, getStudentsByViolation, getStudentsByContract } from '../services/v2.service';
 
 const router = Router();
 
@@ -14,10 +14,10 @@ router
       .then((data) => res.send(data))
       .catch(next);
   })
-  // .get('/3', (req, res, next) => {
-  //   seedData()
-  //     .then((data) => res.send(data))
-  //     .catch(next);
-  // })
+  .get('/3', (req, res, next) => {
+    getStudentsByContract()
+      .then((data) => res.send(data))
+      .catch(next);
+  })
 
 export default router;
