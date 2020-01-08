@@ -98,7 +98,7 @@ export const seedData = async () => {
   await getCustomRepository(StudentRepository).save([
     { bookNo: 'IK6227', note: 'нотатки', person: { id: 1 }, finance: { id: 1 }, diploma: { id: 1 } },
     { bookNo: 'IK6202', note: 'нотатки', person: { id: 2 }, finance: { id: 5 }, diploma: { id: 2 } },
-    { bookNo: 'IK5116', person: { id: 3 }, finance: { id: 3 }, diploma: { id: 1 } },
+    { bookNo: 'IK6216', person: { id: 3 }, finance: { id: 3 }, diploma: { id: 1 } },
     { bookNo: 'IK6216', person: { id: 4 }, finance: { id: 4 }, diploma: { id: 1 } },
   ]);
 
