@@ -7,11 +7,12 @@ import { DiplomaName } from "../../common/enums/DiplomaName";
 export const getStudentsByGroup = () => {
   return getCustomRepository(StudentRepository)
     .createQueryBuilder('student')
+    .leftJoinAndSelect('student.person', 'person')
     .leftJoinAndSelect('student.studentGroups', 'studentGroup')
     .leftJoinAndSelect('studentGroup.group', 'group')
     .where('group.groupCode = :groupCode', { groupCode: 'IK-62' })
     .leftJoinAndSelect('group.speciality', 'speciality')
-    .andWhere('speciality.specialityShifr = :specialityShifr', { specialityShifr: '126' })
+    .andWhere('speciality.specialityShifr = :specialityShifr', { specialityShifr: '151' })
     .leftJoinAndSelect('speciality.cafedra', 'cafedra')
     .andWhere('cafedra.cafedraShifr = :cafedraShifr', { cafedraShifr: 'TC' })
     .leftJoinAndSelect('cafedra.faculty', 'faculty')
@@ -25,14 +26,14 @@ function getSqlFormatDate (date:Date){
   return "'"+date.toISOString()+"'";
 }
 
-export const getStudentsByContract = () => {
+export const getStudentsByContract = (contractKindName: ContractKindName) => {
   return getCustomRepository(StudentRepository)
     .createQueryBuilder('student')
     .leftJoinAndSelect('student.person', 'person')
     .where('person.birthDate BETWEEN ' + getSqlFormatDate(new Date(1900, 1, 1)) + ' AND ' + getSqlFormatDate(new Date(2000, 1, 1)))
     .leftJoinAndSelect('student.contracts', 'contract')
     .leftJoinAndSelect('contract.contractKind', 'contractKind')
-    .andWhere('contractKind.contractKindName = :contractKindName', { contractKindName:  ContractKindName.Type2 })
+    .andWhere('contractKind.contractKindName = :contractKindName', { contractKindName })//:  ContractKindName.Type2 })
     .leftJoinAndSelect('contract.payments', 'payment')
     .andWhere('payment.paymentSum > 1000')
     .getMany()
@@ -41,9 +42,10 @@ export const getStudentsByContract = () => {
 export const getStudentsByDiploma = () => {
   return getCustomRepository(StudentRepository)
     .createQueryBuilder('student')
+    .leftJoinAndSelect('student.person', 'person')
     .leftJoinAndSelect('student.studentGroups', 'studentGroup')
     .leftJoinAndSelect('studentGroup.group', 'group')
-    .where('group.groupCode = :groupCode', { groupCode: 'IK-62' })
+    .where('group.groupCode = :groupCode', { groupCode: 'IK-31' })
     .leftJoinAndSelect('group.speciality', 'speciality')
     .andWhere('speciality.specialityShifr = :specialityShifr', { specialityShifr: '126' })
     .leftJoinAndSelect('student.studentMarks', 'studentMark')

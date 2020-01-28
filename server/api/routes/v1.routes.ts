@@ -10,7 +10,7 @@ router
       .catch(next);
   })
   .get('/2', (req, res, next) => {
-    getStudentsByContract()
+    getStudentsByContract(req.query.contractType)
       .then((data) => res.send(data))
       .catch(next);
   })

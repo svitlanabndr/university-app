@@ -1,0 +1,24 @@
+.container {
+  padding: 40px 0;
+  .request {
+    padding:  0 200px;
+    font-weight: 500;
+    display: flex;
+    margin-bottom: 20px;
+    button {
+      background-color:  #2684FF;
+      color: white;
+      outline: none;
+      border-radius: 10px;
+      font-weight: 600;
+      height: 50px;
+      margin-left: 20px;
+      font-size: .9em;
+    }
+    .select-menu {
+      display: inline-block;
+      width: 180px;
+      margin: 0 10px;
+    }
+  }
+}

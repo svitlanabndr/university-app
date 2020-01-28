@@ -3,9 +3,10 @@ import { connectRouter } from 'connected-react-router';
 import { history } from './history';
 import { storage } from '../utils/storage/storage';
 import { logout } from './routines';
+import reducer from '../containers/Routing/redux/reducer';
 
 const reducers = {
-
+  reducer
 }
 
 const appReducer = combineReducers({

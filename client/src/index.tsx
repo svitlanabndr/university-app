@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import './styles/index.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import 'react-image-crop/lib/ReactCrop.scss';
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
