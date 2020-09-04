@@ -36,7 +36,7 @@
     "history": "^4.10.1",
     "lodash.groupby": "^4.6.0",
     "lodash.isequal": "^4.5.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "onchange": "^6.0.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
